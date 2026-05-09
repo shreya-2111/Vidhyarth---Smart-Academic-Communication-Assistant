@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ],
+  "env": {
+    "DB_HOST": "metro.proxy.rlwy.net",
+    "DB_PORT": "44117",
+    "DB_USER": "root",
+    "DB_PASSWORD": "kNkVTBeFceikvGbnZMsZUkDAcodtYcbm",
+    "DB_NAME": "railway",
+    "JWT_SECRET": "your_jwt_secret_key_here"
+  }
+}

@@ -1,0 +1,403 @@
+/* Student Timetable Styles */
+.student-timetable-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 20px;
+  padding-bottom: 100px;
+}
+
+.timetable-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.timetable-header h2 {
+  color: #1e3a5f;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.timetable-controls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.week-selector {
+  padding: 8px 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.week-selector:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+.btn-print {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-print:hover {
+  background: #1565c0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+}
+
+.timetable-container {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+}
+
+.timetable-grid {
+  display: grid;
+  gap: 12px;
+  overflow-x: auto;
+}
+
+.timetable-header-row {
+  display: grid;
+  grid-template-columns: 100px repeat(6, 1fr);
+  gap: 12px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.time-header {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e3a5f;
+  padding: 12px 8px;
+  text-align: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.day-header {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e3a5f;
+  padding: 12px 8px;
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+  color: white;
+  border-radius: 8px;
+}
+
+.timetable-row {
+  display: grid;
+  grid-template-columns: 100px repeat(6, 1fr);
+  gap: 12px;
+  align-items: stretch;
+  margin-bottom: 8px;
+}
+
+.time-slot {
+  font-size: 13px;
+  color: #666;
+  font-weight: 600;
+  text-align: center;
+  padding: 15px 8px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e9ecef;
+}
+
+.class-cell {
+  border-radius: 10px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.class-cell.has-class {
+  border: 2px solid rgba(25, 118, 210, 0.3);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.class-cell.has-class:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.class-cell.empty {
+  background: #f8f9fa;
+  border-style: dashed;
+  color: #999;
+}
+
+.class-info {
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.class-subject {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1e3a5f;
+  margin-bottom: 6px;
+}
+
+.class-time {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.class-room {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+.class-faculty {
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
+}
+
+.no-timetable {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.no-timetable-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.no-timetable h3 {
+  color: #1e3a5f;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.no-timetable p {
+  font-size: 16px;
+  color: #666;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.timetable-legend {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+}
+
+.timetable-legend h4 {
+  color: #1e3a5f;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.legend-item span {
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Footer */
+.dashboard-footer {
+  background: #1e3a5f;
+  color: white;
+  padding: 15px 30px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.dashboard-footer.show {
+  transform: translateY(0);
+}
+
+.footer-bottom {
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .timetable-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .timetable-controls {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .student-timetable-page {
+    padding: 15px;
+  }
+  
+  .timetable-header h2 {
+    font-size: 20px;
+  }
+  
+  .timetable-container {
+    padding: 15px;
+  }
+  
+  .timetable-header-row,
+  .timetable-row {
+    grid-template-columns: 80px repeat(6, 1fr);
+    gap: 8px;
+  }
+  
+  .time-slot {
+    font-size: 11px;
+    padding: 10px 4px;
+  }
+  
+  .class-cell {
+    min-height: 60px;
+  }
+  
+  .class-info {
+    padding: 6px;
+  }
+  
+  .class-subject {
+    font-size: 12px;
+  }
+  
+  .class-time,
+  .class-room,
+  .class-faculty {
+    font-size: 10px;
+  }
+  
+  .legend-items {
+    gap: 10px;
+  }
+  
+  .legend-item {
+    padding: 6px 10px;
+  }
+  
+  .legend-item span {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timetable-header-row,
+  .timetable-row {
+    grid-template-columns: 60px repeat(6, 1fr);
+    gap: 4px;
+  }
+  
+  .time-slot {
+    font-size: 10px;
+    padding: 8px 2px;
+  }
+  
+  .day-header {
+    font-size: 12px;
+    padding: 8px 4px;
+  }
+  
+  .class-cell {
+    min-height: 50px;
+  }
+  
+  .class-subject {
+    font-size: 11px;
+  }
+  
+  .class-time,
+  .class-room,
+  .class-faculty {
+    font-size: 9px;
+  }
+}

@@ -1,0 +1,126 @@
+/* Global Animation Styles */
+
+/* Close Icon Animation - Cross to Plus on Hover */
+/* Only applies to close/cross (×) icons, not Cancel text buttons */
+.modal-close,
+.close-btn,
+.qr-close-btn,
+.admin-modal-close,
+.faculty-profile-close,
+.student-profile-close,
+.chatbot-close {
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+/* Hide the original × text content */
+.modal-close,
+.close-btn,
+.qr-close-btn,
+.admin-modal-close,
+.faculty-profile-close,
+.student-profile-close,
+.chatbot-close {
+  color: transparent !important;
+}
+
+/* Create the cross icon using pseudo-elements */
+.modal-close::before,
+.modal-close::after,
+.close-btn::before,
+.close-btn::after,
+.qr-close-btn::before,
+.qr-close-btn::after,
+.admin-modal-close::before,
+.admin-modal-close::after,
+.faculty-profile-close::before,
+.faculty-profile-close::after,
+.student-profile-close::before,
+.student-profile-close::after,
+.chatbot-close::before,
+.chatbot-close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 18px;
+  background-color: #666;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  pointer-events: none;
+}
+
+/* Initial cross (×) position */
+.modal-close::before,
+.close-btn::before,
+.qr-close-btn::before,
+.admin-modal-close::before,
+.faculty-profile-close::before,
+.student-profile-close::before,
+.chatbot-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.modal-close::after,
+.close-btn::after,
+.qr-close-btn::after,
+.admin-modal-close::after,
+.faculty-profile-close::after,
+.student-profile-close::after,
+.chatbot-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* On hover, rotate to form a plus (+) sign */
+.modal-close:hover::before,
+.close-btn:hover::before,
+.qr-close-btn:hover::before,
+.admin-modal-close:hover::before,
+.faculty-profile-close:hover::before,
+.student-profile-close:hover::before,
+.chatbot-close:hover::before {
+  transform: translate(-50%, -50%) rotate(90deg);
+  background-color: #333;
+}
+
+.modal-close:hover::after,
+.close-btn:hover::after,
+.qr-close-btn:hover::after,
+.admin-modal-close:hover::after,
+.faculty-profile-close:hover::after,
+.student-profile-close:hover::after,
+.chatbot-close:hover::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+  background-color: #333;
+}
+
+/* Smooth scale transition on hover */
+.modal-close:hover,
+.close-btn:hover,
+.qr-close-btn:hover,
+.admin-modal-close:hover,
+.faculty-profile-close:hover,
+.student-profile-close:hover,
+.chatbot-close:hover {
+  transform: scale(1.1);
+}
+
+/* Special styling for white background close buttons */
+.qr-close-btn::before,
+.qr-close-btn::after,
+.faculty-profile-close::before,
+.faculty-profile-close::after,
+.student-profile-close::before,
+.student-profile-close::after {
+  background-color: #fff;
+}
+
+.qr-close-btn:hover::before,
+.qr-close-btn:hover::after,
+.faculty-profile-close:hover::before,
+.faculty-profile-close:hover::after,
+.student-profile-close:hover::before,
+.student-profile-close:hover::after {
+  background-color: #fff;
+}

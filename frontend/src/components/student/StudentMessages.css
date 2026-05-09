@@ -1,0 +1,542 @@
+/* Student Messages Styles */
+.student-messages-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 20px;
+  padding-bottom: 100px;
+}
+
+.messages-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.messages-header h2 {
+  color: #1e3a5f;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.btn-compose {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-compose:hover {
+  background: #1565c0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+}
+
+/* Messages Tabs */
+.messages-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.messages-tabs .tab-btn {
+  flex: 1;
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.messages-tabs .tab-btn.active {
+  background: #1976d2;
+  color: white;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+}
+
+.messages-tabs .tab-btn:hover:not(.active) {
+  background: #f8f9fa;
+  color: #333;
+}
+
+.tabs-container {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 25px;
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  flex: 1;
+  justify-content: center;
+}
+
+.tab-btn.active {
+  background: #1976d2;
+  color: white;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+}
+
+.tab-btn:hover:not(.active) {
+  background: #f8f9fa;
+  color: #333;
+}
+
+.tab-icon {
+  font-size: 16px;
+}
+
+.tab-label {
+  font-weight: 500;
+}
+
+.messages-content {
+  margin-bottom: 25px;
+}
+
+.announcements-list,
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.announcement-card,
+.message-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.announcement-card:hover,
+.message-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  border-color: #1976d2;
+}
+
+.announcement-header,
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.announcement-header h3 {
+  color: #1e3a5f;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  flex: 1;
+}
+
+.announcement-date {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.announcement-message {
+  color: #333;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.sender-name {
+  color: #1e3a5f;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.faculty-label {
+  display: inline-block;
+  background: #1976d2;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.to-label {
+  color: #666;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.message-date {
+  background: #f0f0f0;
+  color: #666;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.message-text {
+  color: #333;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 15px 0;
+}
+
+.message-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.message-status.read {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.message-status.unread {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.no-data {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.no-data-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.no-data h3 {
+  color: #1e3a5f;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.no-data p {
+  font-size: 16px;
+  color: #666;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Compose Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.modal-header h3 {
+  color: #1e3a5f;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #999;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.compose-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.form-group select,
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.form-group select:focus,
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.btn-cancel,
+.btn-send {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 100px;
+}
+
+.btn-cancel {
+  background: #f8f9fa;
+  color: #495057;
+  border: 2px solid #e9ecef;
+}
+
+.btn-cancel:hover {
+  background: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.btn-send {
+  background: #1976d2;
+  color: white;
+}
+
+.btn-send:hover {
+  background: #1565c0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Footer */
+.dashboard-footer {
+  background: #1e3a5f;
+  color: white;
+  padding: 15px 30px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.dashboard-footer.show {
+  transform: translateY(0);
+}
+
+.footer-bottom {
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .student-messages-page {
+    padding: 15px;
+  }
+  
+  .messages-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+    padding: 15px;
+  }
+  
+  .messages-header h2 {
+    font-size: 20px;
+  }
+  
+  .btn-compose {
+    justify-content: center;
+  }
+  
+  .tabs-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .tab-btn {
+    justify-content: flex-start;
+  }
+  
+  .announcement-card,
+  .message-card {
+    padding: 15px;
+  }
+  
+  .announcement-header,
+  .message-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .modal-content {
+    padding: 20px;
+    margin: 20px;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .announcement-header h3 {
+    font-size: 16px;
+  }
+  
+  .announcement-message,
+  .message-text {
+    font-size: 13px;
+  }
+  
+  .form-group select,
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+  }
+}

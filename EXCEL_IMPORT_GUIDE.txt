@@ -1,0 +1,287 @@
+================================================================
+  VIDHYARTH - EXCEL STUDENT IMPORT GUIDE
+  How to Import Students from Excel into Database
+================================================================
+
+----------------------------------------------------------------
+STEP 1: INSTALL REQUIRED PACKAGE
+----------------------------------------------------------------
+
+Open terminal in the backend folder and run:
+
+    cd backend
+    npm install xlsx
+
+Verify it installed:
+
+    node -e "require('xlsx'); console.log('xlsx OK')"
+
+You should see: xlsx OK
+
+
+----------------------------------------------------------------
+STEP 2: PREPARE YOUR EXCEL FILE
+----------------------------------------------------------------
+
+Your Excel file MUST have these column headers in Row 1:
+
+    enrollment_no   (optional)  - e.g. MSC001
+    name            (REQUIRED)  - e.g. Aarav Shah
+    email           (REQUIRED)  - e.g. aarav@vidhyarth.com
+    password        (REQUIRED)  - e.g. Aarav@123
+    class           (optional)  - e.g. Msc.IT 1st Year
+    division        (optional)  - e.g. A
+    roll_no         (optional)  - e.g. 01
+    phone           (optional)  - e.g. 9876543201
+
+IMPORTANT RULES:
+  - Column names must be EXACTLY as shown above (lowercase)
+  - name, email, password are mandatory
+  - Each email must be unique
+  - Each enrollment_no must be unique
+  - Save file as .xlsx format
+
+A ready-to-use template is already available at:
+    database/students_import_template.xlsx
+
+
+----------------------------------------------------------------
+STEP 3: CHECK DATABASE HAS REQUIRED COLUMNS
+----------------------------------------------------------------
+
+Open terminal in backend folder and run:
+
+    node -e "
+    const db = require('./config/database');
+    db.execute('DESCRIBE student').then(([r]) => {
+      const cols = r.map(c => c.Field);
+      console.log('Columns:', cols.join(', '));
+      const hasEnroll = cols.includes('enrollment_no');
+      const hasReset = cols.includes('is_password_reset');
+      console.log('enrollment_no:', hasEnroll ? 'EXISTS' : 'MISSING - run migration');
+      console.log('is_password_reset:', hasReset ? 'EXISTS' : 'MISSING - run migration');
+      process.exit(0);
+    }).catch(e => { console.error(e.message); process.exit(1); });
+    "
+
+If any column shows MISSING, run this migration:
+
+    node -e "
+    const db = require('./config/database');
+    async function fix() {
+      await db.execute('ALTER TABLE student ADD COLUMN IF NOT EXISTS enrollment_no VARCHAR(20) DEFAULT NULL AFTER student_id');
+      await db.execute('ALTER TABLE student ADD COLUMN IF NOT EXISTS is_password_reset TINYINT(1) NOT NULL DEFAULT 0 AFTER is_active');
+      console.log('Migration done');
+      process.exit(0);
+    }
+    fix().catch(e => { console.error(e.message); process.exit(1); });
+    "
+
+
+----------------------------------------------------------------
+STEP 4: IMPORT EXCEL FILE INTO DATABASE
+----------------------------------------------------------------
+
+Place your Excel file in the database/ folder.
+
+Then run this command from the backend/ folder:
+
+    node -e "
+    const XLSX = require('xlsx');
+    const bcrypt = require('bcryptjs');
+    const db = require('./config/database');
+
+    async function importStudents() {
+      const wb = XLSX.readFile('../database/students_import_template.xlsx');
+      const rows = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+      let imported = 0, skipped = 0;
+
+      for (const row of rows) {
+        const [existEmail] = await db.execute('SELECT student_id FROM student WHERE email = ?', [row.email]);
+        if (existEmail.length > 0) { console.log('Skip (dup email):', row.email); skipped++; continue; }
+
+        if (row.enrollment_no) {
+          const [existEnroll] = await db.execute('SELECT student_id FROM student WHERE enrollment_no = ?', [String(row.enrollment_no)]);
+          if (existEnroll.length > 0) { console.log('Skip (dup enrollment):', row.enrollment_no); skipped++; continue; }
+        }
+
+        const hashed = await bcrypt.hash(String(row.password), 10);
+        await db.execute(
+          'INSERT INTO student (enrollment_no, name, email, password, department, class, division, roll_no, phone, is_active, is_password_reset) VALUES (?,?,?,?,?,?,?,?,?,1,0)',
+          [row.enrollment_no ? String(row.enrollment_no) : null, row.name, row.email, hashed, 'Msc.IT', row.class || '', row.division || null, row.roll_no ? String(row.roll_no) : null, row.phone ? String(row.phone) : null]
+        );
+        console.log('Imported:', row.name, '|', row.email);
+        imported++;
+      }
+
+      console.log('Done! Imported:', imported, '| Skipped:', skipped);
+      process.exit(0);
+    }
+
+    importStudents().catch(e => { console.error(e.message); process.exit(1); });
+    "
+
+NOTE: Change 'students_import_template.xlsx' to your actual filename.
+
+
+----------------------------------------------------------------
+STEP 5: VERIFY IMPORT WAS SUCCESSFUL
+----------------------------------------------------------------
+
+Run this to check imported students:
+
+    node -e "
+    const db = require('./config/database');
+    db.execute('SELECT student_id, enrollment_no, name, email, class, division, is_password_reset FROM student ORDER BY student_id DESC LIMIT 25').then(([r]) => {
+      console.log('Total students found:', r.length);
+      r.forEach(s => console.log(s.enrollment_no, '|', s.name, '|', s.email, '| reset:', s.is_password_reset));
+      process.exit(0);
+    }).catch(e => { console.error(e.message); process.exit(1); });
+    "
+
+Expected output:
+  - All students listed
+  - is_password_reset = 0 for all (means they must reset on first login)
+
+
+----------------------------------------------------------------
+STEP 6: RESTART BACKEND SERVER
+----------------------------------------------------------------
+
+Stop the current backend (Ctrl+C) and restart:
+
+    node server.js
+
+You should see:
+    Server running on port 5001
+    Database connected successfully
+
+
+----------------------------------------------------------------
+STEP 7: TEST STUDENT LOGIN FLOW
+----------------------------------------------------------------
+
+1. Open browser: http://localhost:3000
+2. Click "Sign In" tab
+3. Enter student email: aarav.shah@vidhyarth.com
+4. Enter default password: Aarav@123
+5. Click Login
+
+Expected:
+  - Login succeeds
+  - Password Reset Modal appears (cannot be closed/skipped)
+  - Enter current password: Aarav@123
+  - Enter new password: (your choice, min 6 chars)
+  - Confirm new password
+  - Click "Update Password"
+  - Alert: "Password updated successfully! Please login with your new password."
+  - Redirected back to login page
+  - Login again with NEW password
+  - Dashboard opens normally
+
+
+----------------------------------------------------------------
+STEP 8: VERIFY PASSWORD WAS UPDATED IN DATABASE
+----------------------------------------------------------------
+
+After a student resets their password, verify it updated:
+
+    node -e "
+    const db = require('./config/database');
+    db.execute('SELECT name, email, is_password_reset FROM student WHERE email = ?', ['aarav.shah@vidhyarth.com']).then(([r]) => {
+      console.log(r[0]);
+      process.exit(0);
+    }).catch(e => { console.error(e.message); process.exit(1); });
+    "
+
+Expected:
+  - is_password_reset: 1  (means password was successfully reset)
+
+
+----------------------------------------------------------------
+USING ADMIN UI TO IMPORT (Alternative Method)
+----------------------------------------------------------------
+
+Instead of running the script manually, you can use the Admin UI:
+
+1. Login as admin: harsh1@gmail.com / Harsh@1
+2. Click "Import Students" in the left sidebar
+3. Drag & drop your Excel file OR click to browse
+4. Click "Import Students" button
+5. See results: how many imported / skipped
+
+This uses the API endpoint: POST /api/excel/import
+
+
+----------------------------------------------------------------
+TROUBLESHOOTING
+----------------------------------------------------------------
+
+Problem: "xlsx is not installed"
+Solution: Run: cd backend && npm install xlsx
+
+Problem: "Cannot connect to database"
+Solution: Check backend/.env has correct DB credentials
+          Ensure MySQL/XAMPP is running
+
+Problem: "Duplicate email skipped"
+Solution: That student already exists in database
+          Either delete the existing record or use a different email
+
+Problem: "Column enrollment_no does not exist"
+Solution: Run the migration in Step 3
+
+Problem: "Password reset modal not showing"
+Solution: Ensure backend is restarted after code changes
+          Check browser console for errors (F12)
+
+Problem: "Current password is incorrect" during reset
+Solution: Use the exact password from the Excel file
+          Passwords are case-sensitive
+
+Problem: Student can access dashboard without resetting password
+Solution: Clear browser localStorage:
+          Open F12 > Application > Local Storage > Clear All
+          Then login again
+
+
+----------------------------------------------------------------
+EXCEL FILE LOCATION
+----------------------------------------------------------------
+
+Template file:  database/students_import_template.xlsx
+Import script:  Run from backend/ folder
+Upload folder:  backend/uploads/excel/ (when using Admin UI)
+
+
+----------------------------------------------------------------
+DEFAULT STUDENT CREDENTIALS (from template)
+----------------------------------------------------------------
+
+enrollment_no | email                          | default password
+--------------+--------------------------------+-----------------
+MSC001        | aarav.shah@vidhyarth.com       | Aarav@123
+MSC002        | priya.patel@vidhyarth.com      | Priya@123
+MSC003        | rohan.mehta@vidhyarth.com      | Rohan@123
+MSC004        | sneha.joshi@vidhyarth.com      | Sneha@123
+MSC005        | karan.desai@vidhyarth.com      | Karan@123
+MSC006        | nisha.verma@vidhyarth.com      | Nisha@123
+MSC007        | amit.kumar@vidhyarth.com       | Amit@123
+MSC008        | pooja.singh@vidhyarth.com      | Pooja@123
+MSC009        | raj.sharma@vidhyarth.com       | Raj@123
+MSC010        | divya.nair@vidhyarth.com       | Divya@123
+MSC011        | vikram.rao@vidhyarth.com       | Vikram@123
+MSC012        | ananya.gupta@vidhyarth.com     | Ananya@123
+MSC013        | siddharth.jain@vidhyarth.com   | Siddharth@123
+MSC014        | meera.pillai@vidhyarth.com     | Meera@123
+MSC015        | arjun.tiwari@vidhyarth.com     | Arjun@123
+MSC016        | kavya.reddy@vidhyarth.com      | Kavya@123
+MSC017        | nikhil.bose@vidhyarth.com      | Nikhil@123
+MSC018        | tanvi.mishra@vidhyarth.com     | Tanvi@123
+MSC019        | harsh.pandey@vidhyarth.com     | Harsh@123
+MSC020        | ishita.saxena@vidhyarth.com    | Ishita@123
+
+
+================================================================
+  END OF GUIDE
+================================================================

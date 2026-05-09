@@ -1,0 +1,242 @@
+.my-subjects-container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.subjects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.subjects-header h2 {
+  margin: 0;
+  color: #1e3a5f;
+  font-size: 28px;
+}
+
+.subjects-summary {
+  display: flex;
+  gap: 10px;
+}
+
+.summary-badge {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.class-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.class-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.class-card-header {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.class-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.class-meta {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.class-meta span {
+  margin-right: 8px;
+}
+
+.subject-count-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.subjects-list {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.subject-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+  transition: background 0.2s;
+}
+
+.subject-item:hover {
+  background: #e9ecef;
+}
+
+.subject-icon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subject-details {
+  flex: 1;
+}
+
+.subject-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e3a5f;
+  margin-bottom: 4px;
+}
+
+.subject-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: #666;
+}
+
+.subject-code {
+  color: #667eea;
+  font-weight: 500;
+}
+
+.subject-credits {
+  color: #999;
+}
+
+.subjects-footer {
+  background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+  padding: 16px 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.subjects-footer p {
+  margin: 0;
+  color: #2d3436;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #1e3a5f;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  margin: 0 0 10px 0;
+  color: #1e3a5f;
+  font-size: 24px;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .subjects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .subjects-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .subjects-summary {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .class-card-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .subject-count-badge {
+    align-self: flex-start;
+  }
+}

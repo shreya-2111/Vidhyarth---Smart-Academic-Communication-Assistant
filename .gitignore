@@ -1,0 +1,76 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Environment variables (IMPORTANT - Contains secrets!)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+frontend/.env
+
+# Production builds
+build/
+frontend/build/
+dist/
+
+# Uploads (May contain user data)
+backend/uploads/
+uploads/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Archives
+*.zip
+*.rar
+*.tar.gz
+
+# Database dumps
+*.sql.gz
+*.dump
+
+# IDE Configuration
+.idea/
+.vscode/
+
+# Build Artifacts
+frontend/build/
+frontend/node_modules/.cache/
+
+# Environment Variables
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Temporary Files
+*.tmp
+*.temp

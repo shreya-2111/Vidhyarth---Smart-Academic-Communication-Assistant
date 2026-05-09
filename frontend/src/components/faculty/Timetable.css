@@ -1,0 +1,483 @@
+/* Timetable Page */
+.timetable-page {
+  padding: 25px 30px 80px 30px; /* Added bottom padding for footer */
+  background: #f0f2f5;
+  min-height: 100vh;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.timetable-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.timetable-header-section h2 {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #1565c0;
+}
+
+.btn-secondary {
+  padding: 10px 20px;
+  background: white;
+  color: #1976d2;
+  border: 2px solid #1976d2;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #1976d2;
+  color: white;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #999;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+.modal-content form {
+  padding: 25px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.form-field input,
+.form-field select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+.disabled-input {
+  background: #f5f5f5;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.btn-cancel {
+  padding: 10px 24px;
+  background: white;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+  background: #f5f5f5;
+}
+
+.btn-submit {
+  padding: 10px 24px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-submit:hover {
+  background: #1565c0;
+}
+
+.btn-submit:disabled {
+  background: #90caf9;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.submit-btn:disabled {
+  background: #90caf9;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Calendar */
+.timetable-calendar {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: 100px repeat(6, 1fr);
+  background: #1976d2;
+  color: white;
+}
+
+.time-column-header,
+.day-column-header {
+  padding: 15px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.calendar-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-row {
+  display: grid;
+  grid-template-columns: 100px repeat(6, 1fr);
+  border-bottom: 1px solid #e0e0e0;
+  min-height: 80px;
+}
+
+.calendar-row:last-child {
+  border-bottom: none;
+}
+
+.time-cell {
+  padding: 15px;
+  text-align: center;
+  font-weight: 500;
+  color: #666;
+  background: #f9f9f9;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.class-cell {
+  padding: 8px;
+  border-right: 1px solid #e0e0e0;
+  position: relative;
+}
+
+.class-cell:last-child {
+  border-right: none;
+}
+
+.class-card {
+  padding: 10px;
+  border-radius: 6px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-left: 3px solid rgba(0, 0, 0, 0.2);
+}
+
+.class-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.class-info {
+  flex: 1;
+}
+
+.class-subject {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.class-time {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 3px;
+}
+
+.class-room {
+  font-size: 11px;
+  color: #888;
+}
+
+.class-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.edit-btn:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
+
+.delete-btn:hover {
+  background: #ffebee;
+  transform: scale(1.1);
+}
+
+/* Print Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  .timetable-calendar,
+  .timetable-calendar * {
+    visibility: visible;
+  }
+  
+  .timetable-calendar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .timetable-page {
+    padding: 0;
+    background: white;
+  }
+
+  .timetable-header-section,
+  .header-actions,
+  .no-print,
+  .class-actions,
+  .edit-btn,
+  .delete-btn {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .class-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+
+  .class-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .calendar-header {
+    background: #1976d2 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .time-cell {
+    background: #f9f9f9 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .class-item {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Add page title */
+  .timetable-calendar::before {
+    content: "Weekly Timetable";
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  @page {
+    size: landscape;
+    margin: 1cm;
+  }
+}
+
+.no-classes-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .calendar-header,
+  .calendar-row {
+    grid-template-columns: 80px repeat(6, 1fr);
+  }
+
+  .class-subject {
+    font-size: 12px;
+  }
+
+  .class-time,
+  .class-room {
+    font-size: 10px;
+  }
+}
+/* Footer - Sliding on scroll */
+.dashboard-footer {
+  background: #1e3a5f;
+  color: white;
+  padding: 15px 30px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.dashboard-footer.show {
+  transform: translateY(0);
+}
+
+.footer-bottom {
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  .dashboard-footer {
+    padding: 15px;
+  }
+  
+  .footer-bottom p {
+    font-size: 12px;
+  }
+}

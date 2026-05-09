@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student QR Scanner - Vidhyarth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: monospace;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            display: block;
+        }
+
+        .result.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            display: block;
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .instructions h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            color: #666;
+            font-size: 14px;
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">📱</div>
+            <h1>QR Attendance Scanner</h1>
+            <p>Scan QR code to mark your attendance</p>
+        </div>
+
+        <form id="scanForm">
+            <div class="input-group">
+                <label for="studentId">Student ID / Roll Number</label>
+                <input type="text" id="studentId" placeholder="Enter your student ID" required>
+            </div>
+
+            <div class="input-group">
+                <label for="qrData">QR Code Data</label>
+                <textarea id="qrData" placeholder="Paste QR code data here or scan with camera" required></textarea>
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn">
+                ✓ Mark Attendance
+            </button>
+        </form>
+
+        <div id="result" class="result"></div>
+
+        <div class="instructions">
+            <h3>📋 How to Use:</h3>
+            <ol>
+                <li>Enter your Student ID or Roll Number</li>
+                <li>Scan the QR code shown by your teacher</li>
+                <li>Paste the QR data in the text area above</li>
+                <li>Click "Mark Attendance"</li>
+                <li>Wait for confirmation</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('scanForm');
+        const resultDiv = document.getElementById('result');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const studentId = document.getElementById('studentId').value;
+            const qrData = document.getElementById('qrData').value;
+
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+
+            try {
+                // Parse QR data
+                const sessionData = JSON.parse(qrData);
+
+                // Validate QR data
+                if (sessionData.type !== 'attendance') {
+                    throw new Error('Invalid QR code type');
+                }
+
+                // Check expiry
+                if (new Date() > new Date(sessionData.expiryTime)) {
+                    throw new Error('QR code has expired');
+                }
+
+                // Send to backend
+                const response = await fetch('http://localhost:5001/api/attendance/qr-scan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sessionId: qrData,
+                        studentId: parseInt(studentId)
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Success
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        <strong>✓ Success!</strong><br>
+                        Attendance marked for ${data.student}<br>
+                        Status: ${data.status}<br>
+                        Class: ${sessionData.className}<br>
+                        Subject: ${sessionData.subject}
+                    `;
+                    form.reset();
+                } else {
+                    throw new Error(data.error || 'Failed to mark attendance');
+                }
+            } catch (error) {
+                // Error
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <strong>✗ Error!</strong><br>
+                    ${error.message}
+                `;
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.textContent = '✓ Mark Attendance';
+            }
+        });
+    </script>
+</body>
+</html>
