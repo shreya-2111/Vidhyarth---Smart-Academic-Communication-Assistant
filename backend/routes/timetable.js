@@ -42,6 +42,10 @@ router.post('/', authenticateToken, async (req, res) => {
   try {
     const { facultyId, subject, day, startTime, endTime, roomNo } = req.body;
 
+    if (facultyId !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ error: 'You can only add classes to your own timetable' });
+    }
+
     // Check for duplicate: same faculty, same day, same start time
     const [existing] = await db.execute(
       `SELECT timetable_id FROM timetable 
@@ -77,6 +81,20 @@ router.put('/:id', authenticateToken, async (req, res) => {
     const { id } = req.params;
     const { subject, day, startTime, endTime, roomNo, facultyId } = req.body;
 
+    // Check if the class belongs to the logged in user
+    const [classRecord] = await db.execute(
+      'SELECT faculty_id FROM timetable WHERE timetable_id = ?',
+      [id]
+    );
+
+    if (classRecord.length === 0) {
+      return res.status(404).json({ error: 'Class not found' });
+    }
+
+    if (classRecord[0].faculty_id !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ error: 'You can only update your own classes' });
+    }
+
     // Check for duplicate on the new slot (exclude current record)
     const [existing] = await db.execute(
       `SELECT timetable_id FROM timetable 
@@ -108,6 +126,20 @@ router.put('/:id', authenticateToken, async (req, res) => {
 router.delete('/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
+
+    // Check if the class belongs to the logged in user
+    const [classRecord] = await db.execute(
+      'SELECT faculty_id FROM timetable WHERE timetable_id = ?',
+      [id]
+    );
+
+    if (classRecord.length === 0) {
+      return res.status(404).json({ error: 'Class not found' });
+    }
+
+    if (classRecord[0].faculty_id !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ error: 'You can only delete your own classes' });
+    }
 
     await db.execute('DELETE FROM timetable WHERE timetable_id = ?', [id]);
 
