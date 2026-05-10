@@ -218,10 +218,10 @@ router.post('/users/:type', authenticateToken, isAdmin, async (req, res) => {
     
     let query, params;
     if (type === 'faculty') {
-      query = `INSERT INTO ${table} (name, email, password, department, class, subject) VALUES (?, ?, ?, ?, ?, ?)`;
+      query = `INSERT INTO \`${table}\` (\`name\`, \`email\`, \`password\`, \`department\`, \`class\`, \`subject\`) VALUES (?, ?, ?, ?, ?, ?)`;
       params = [name, email, hashedPassword, department, className || null, subject || null];
     } else {
-      query = `INSERT INTO ${table} (name, email, password, department) VALUES (?, ?, ?, ?)`;
+      query = `INSERT INTO \`${table}\` (\`name\`, \`email\`, \`password\`, \`department\`) VALUES (?, ?, ?, ?)`;
       params = [name, email, hashedPassword, department];
     }
 
@@ -821,11 +821,11 @@ router.post('/master/:table', authenticateToken, isAdmin, async (req, res) => {
     }
 
     // Build INSERT query dynamically
-    const columns = Object.keys(data).join(', ');
+    const columns = Object.keys(data).map(key => `\`${key}\``).join(', ');
     const placeholders = Object.keys(data).map(() => '?').join(', ');
     const values = Object.values(data);
 
-    const query = `INSERT INTO ${table} (${columns}) VALUES (${placeholders})`;
+    const query = `INSERT INTO \`${table}\` (${columns}) VALUES (${placeholders})`;
     const [result] = await db.execute(query, values);
 
     res.status(201).json({
@@ -907,10 +907,10 @@ router.put('/master/:table/:id', authenticateToken, isAdmin, async (req, res) =>
     (joinedColumns[table] || []).forEach(col => delete data[col]);
 
     // Build UPDATE query dynamically
-    const setClause = Object.keys(data).map(key => `${key} = ?`).join(', ');
+    const setClause = Object.keys(data).map(key => `\`${key}\` = ?`).join(', ');
     const values = [...Object.values(data), id];
 
-    const query = `UPDATE ${table} SET ${setClause} WHERE ${primaryKey} = ?`;
+    const query = `UPDATE \`${table}\` SET ${setClause} WHERE \`${primaryKey}\` = ?`;
     const [result] = await db.execute(query, values);
 
     if (result.affectedRows === 0) {
@@ -960,7 +960,7 @@ router.delete('/master/:table/:id', authenticateToken, isAdmin, async (req, res)
     };
     
     const primaryKey = primaryKeys[table];
-    const query = `DELETE FROM ${table} WHERE ${primaryKey} = ?`;
+    const query = `DELETE FROM \`${table}\` WHERE \`${primaryKey}\` = ?`;
     const [result] = await db.execute(query, [id]);
 
     if (result.affectedRows === 0) {
