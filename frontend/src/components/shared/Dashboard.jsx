@@ -193,14 +193,14 @@ function FacultyDashboard({ user, onLogout, activeMenu, setActiveMenu }) {
         setRecentAnnouncements(announcements.slice(0, 2));
       }
 
-      setDashboardStats({
-        todayClasses: todayClassesCount,
+      setDashboardStats(prev => ({
+        ...prev,
         pendingAssignments: assignmentStats.pending || 0,
         absentStudents: attendanceStats.absent || 0,
         totalStudents: totalStudents,
         totalAssignments: assignmentStats.total || 0,
         attendanceToday: attendanceStats.present || 0
-      });
+      }));
 
     } catch (error) {
       console.error('Error fetching dashboard stats:', error);
@@ -230,6 +230,7 @@ function FacultyDashboard({ user, onLogout, activeMenu, setActiveMenu }) {
           const today = getTodayDay();
           const todaysClasses = formattedClasses.filter(c => c.day === today);
           setTodayClasses(todaysClasses);
+          setDashboardStats(prev => ({ ...prev, todayClasses: todaysClasses.length }));
         }
       } catch (error) {
         console.error('Error loading timetable:', error);
@@ -788,7 +789,8 @@ function StudentDashboard({ user, onLogout }) {
       
       if (statsResponse.ok) {
         const stats = await statsResponse.json();
-        setDashboardStats(stats);
+        delete stats.todayClasses; // Don't overwrite locally calculated classes
+        setDashboardStats(prev => ({ ...prev, ...stats }));
       }
 
       // Fetch recent announcements
@@ -853,6 +855,11 @@ function StudentDashboard({ user, onLogout }) {
             facultyName: c.faculty_name
           }));
           setTimetableClasses(formattedClasses);
+          
+          // Update today's classes count locally
+          const today = getTodayDay();
+          const todaysClassesCount = formattedClasses.filter(c => c.day === today).length;
+          setDashboardStats(prev => ({ ...prev, todayClasses: todaysClassesCount }));
         }
       } catch (error) {
         console.error('Error loading timetable:', error);

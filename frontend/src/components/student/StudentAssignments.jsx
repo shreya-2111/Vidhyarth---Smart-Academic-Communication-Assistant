@@ -160,6 +160,8 @@ function StudentAssignments({ user }) {
         return isOverdue 
           ? { label: 'Overdue', class: 'overdue', icon: '⚠️' }
           : { label: 'Pending', class: 'pending', icon: '⏳' };
+      case 'overdue':
+        return { label: 'Overdue', class: 'overdue', icon: '⚠️' };
       case 'late':
         return { label: 'Late Submission', class: 'late', icon: '⏰' };
       default:
@@ -276,7 +278,7 @@ function StudentAssignments({ user }) {
                       </a>
                     )}
                     
-                    {assignment.status === 'pending' && (
+                    {(assignment.status === 'pending' || assignment.status === 'overdue') && (
                       <button 
                         className="btn-submit"
                         onClick={() => handleSubmitAssignment(assignment)}

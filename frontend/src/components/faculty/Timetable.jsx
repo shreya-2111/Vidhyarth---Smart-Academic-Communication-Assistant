@@ -83,7 +83,8 @@ function Timetable({ user }) {
           startTime: c.start_time,
           endTime: c.end_time,
           roomNo: c.room_no,
-          facultyName: user.fullName
+          facultyName: c.faculty_name || user.fullName,
+          facultyId: c.faculty_id
         }));
         console.log('Formatted classes:', formattedClasses);
         setClasses(formattedClasses);
@@ -545,23 +546,28 @@ function Timetable({ user }) {
                               {formatTo12Hour(classItem.startTime)} - {formatTo12Hour(classItem.endTime)}
                             </div>
                             <div className="class-room">Room: {classItem.roomNo}</div>
+                            <div className="class-faculty" style={{ fontSize: '0.85em', color: '#666', marginTop: '4px', fontStyle: 'italic' }}>
+                              By: {classItem.facultyName}
+                            </div>
                           </div>
-                          <div className="class-actions no-print">
-                            <button 
-                              className="edit-btn"
-                              onClick={() => handleEdit(classItem)}
-                              title="Edit"
-                            >
-                              ✏️
-                            </button>
-                            <button 
-                              className="delete-btn"
-                              onClick={() => handleDelete(classItem.id)}
-                              title="Delete"
-                            >
-                              🗑️
-                            </button>
-                          </div>
+                          {classItem.facultyId === user.id && (
+                            <div className="class-actions no-print">
+                              <button 
+                                className="edit-btn"
+                                onClick={() => handleEdit(classItem)}
+                                title="Edit"
+                              >
+                                ✏️
+                              </button>
+                              <button 
+                                className="delete-btn"
+                                onClick={() => handleDelete(classItem.id)}
+                                title="Delete"
+                              >
+                                🗑️
+                              </button>
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>

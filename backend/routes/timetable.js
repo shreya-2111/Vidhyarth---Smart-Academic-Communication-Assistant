@@ -25,8 +25,10 @@ router.get('/faculty/:facultyId', authenticateToken, async (req, res) => {
   try {
     const { facultyId } = req.params;
     const [classes] = await db.execute(
-      'SELECT * FROM timetable WHERE faculty_id = ? ORDER BY FIELD(day,\'Monday\',\'Tuesday\',\'Wednesday\',\'Thursday\',\'Friday\',\'Saturday\'), start_time',
-      [facultyId]
+      `SELECT t.*, f.name as faculty_name 
+       FROM timetable t 
+       LEFT JOIN faculty f ON t.faculty_id = f.faculty_id 
+       ORDER BY FIELD(t.day,'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'), t.start_time`
     );
     res.json(classes);
   } catch (error) {
