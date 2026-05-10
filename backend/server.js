@@ -37,7 +37,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve uploaded files
-app.use('/uploads', express.static('uploads'));
+const isVercel = process.env.VERCEL === '1';
+const uploadDir = isVercel ? '/tmp/uploads' : 'uploads';
+app.use('/uploads', express.static(uploadDir));
 
 // Routes
 app.use('/api/public', publicRoutes);

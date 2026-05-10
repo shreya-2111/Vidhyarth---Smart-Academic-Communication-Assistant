@@ -9,7 +9,10 @@ const fs = require('fs');
 // Configure multer for file upload
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const uploadDir = path.join(__dirname, '../uploads/assignments');
+    const isVercel = process.env.VERCEL === '1';
+    const uploadDir = isVercel 
+      ? path.join('/tmp', 'uploads', 'assignments')
+      : path.join(__dirname, '../uploads/assignments');
     
     // Create directory if it doesn't exist
     if (!fs.existsSync(uploadDir)) {

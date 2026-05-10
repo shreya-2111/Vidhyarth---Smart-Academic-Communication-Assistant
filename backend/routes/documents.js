@@ -9,7 +9,11 @@ const { authenticateToken } = require('../middleware/auth');
 // Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadDir = 'uploads/documents';
+    const isVercel = process.env.VERCEL === '1';
+    const uploadDir = isVercel
+      ? path.join('/tmp', 'uploads', 'documents')
+      : path.join(__dirname, '../uploads/documents');
+
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
     }
