@@ -18,6 +18,7 @@
     "DB_USER": "root",
     "DB_PASSWORD": "kNkVTBeFceikvGbnZMsZUkDAcodtYcbm",
     "DB_NAME": "railway",
-    "JWT_SECRET": "your_jwt_secret_key_here"
+    "JWT_SECRET": "your_jwt_secret_key_here",
+    "GEMINI_API_KEY": "AIzaSyBTtAOfzp7dD55d144hnR3-nQSswvRvyQ0"
   }
 }
