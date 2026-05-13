@@ -42,7 +42,7 @@ router.post('/', authenticateToken, async (req, res) => {
   try {
     const { facultyId, subject, day, startTime, endTime, roomNo } = req.body;
 
-    if (facultyId !== req.user.id && req.user.role !== 'admin') {
+    if (parseInt(facultyId) !== req.user.userId && req.user.userType !== 'admin') {
       return res.status(403).json({ error: 'You can only add classes to your own timetable' });
     }
 
@@ -91,7 +91,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
       return res.status(404).json({ error: 'Class not found' });
     }
 
-    if (classRecord[0].faculty_id !== req.user.id && req.user.role !== 'admin') {
+    if (classRecord[0].faculty_id !== req.user.userId && req.user.userType !== 'admin') {
       return res.status(403).json({ error: 'You can only update your own classes' });
     }
 
@@ -137,7 +137,7 @@ router.delete('/:id', authenticateToken, async (req, res) => {
       return res.status(404).json({ error: 'Class not found' });
     }
 
-    if (classRecord[0].faculty_id !== req.user.id && req.user.role !== 'admin') {
+    if (classRecord[0].faculty_id !== req.user.userId && req.user.userType !== 'admin') {
       return res.status(403).json({ error: 'You can only delete your own classes' });
     }
 

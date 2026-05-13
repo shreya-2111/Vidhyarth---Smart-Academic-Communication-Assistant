@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Login.css';
-import { authAPI } from '../../services/api';
+import { authAPI, API_URL } from '../../services/api';
 
 function Login({ onLogin }) {
   const [activeTab, setActiveTab] = useState('signin');
@@ -46,7 +46,7 @@ function Login({ onLogin }) {
   const fetchClasses = async () => {
     try {
       setLoadingClasses(true);
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/public/classes');
+      const response = await fetch(`${API_URL}/public/classes`);
       if (response.ok) {
         const data = await response.json();
         setClasses(data);
