@@ -26,27 +26,13 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Middleware
-// CORS — allow Vercel frontend, local dev, and mobile apps
-const allowedOrigins = [
-  'https://vidhyarth-frontend.vercel.app',
-  'http://localhost:3000',
-  'http://localhost:5001',
-];
-
+// CORS configuration - allow all origins for mobile app access
 const corsOptions = {
-  origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, curl, Postman)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    // Allow any vercel.app preview deployments
-    if (origin.endsWith('.vercel.app')) return callback(null, true);
-    return callback(new Error('Not allowed by CORS'));
-  },
+  origin: '*',
   credentials: true,
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // handle preflight for all routes
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -86,12 +72,9 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 Server is running on port ${PORT}`);
-    console.log(`📱 Mobile devices can connect to: http://10.52.207.229:${PORT}`);
-    console.log(`💻 Local access: http://localhost:${PORT}`);
-  });
-}
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(`💻 Local access: http://localhost:${PORT}`);
+});
 
 module.exports = app;
