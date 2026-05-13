@@ -74,3 +74,9 @@ Thumbs.db
 # Temporary Files
 *.tmp
 *.temp
+
+# Flutter build artifacts
+vidhyarth_app/build/
+vidhyarth_app/.dart_tool/
+vidhyarth_app/.flutter-plugins
+vidhyarth_app/.flutter-plugins-dependencies
