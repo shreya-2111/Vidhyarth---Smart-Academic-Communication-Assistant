@@ -105,7 +105,7 @@ function Documents({ user }) {
       const token = localStorage.getItem('authToken');
       const params = new URLSearchParams(selectedFilters);
       const response = await fetch(
-        `https://backend-beryl-pi.vercel.app/api/documents/faculty/${user.id}?${params}`,
+        `https://backend-git-main-shreya-2111s-projects.vercel.app/api/documents/faculty/${user.id}?${params}`,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
       if (response.ok) {
@@ -125,7 +125,7 @@ function Documents({ user }) {
       const token = localStorage.getItem('authToken');
       const params = new URLSearchParams(selectedFilters);
       const response = await fetch(
-        `https://backend-beryl-pi.vercel.app/api/documents/public?${params}`,
+        `https://backend-git-main-shreya-2111s-projects.vercel.app/api/documents/public?${params}`,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
       if (response.ok) {
@@ -142,7 +142,7 @@ function Documents({ user }) {
   const fetchStats = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/documents/stats/${user.id}`, {
+      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/documents/stats/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -205,7 +205,7 @@ function Documents({ user }) {
       formData.append('semester', uploadForm.semester);
       formData.append('isPublic', uploadForm.isPublic);
 
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/documents/upload', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/documents/upload', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData
@@ -239,7 +239,7 @@ function Documents({ user }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/documents/${selectedDocument.document_id}`, {
+      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/documents/${selectedDocument.document_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -267,7 +267,7 @@ function Documents({ user }) {
 
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/documents/${documentId}`, {
+      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/documents/${documentId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -286,7 +286,7 @@ function Documents({ user }) {
   const handleDownload = async (documentId, fileName) => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/documents/download/${documentId}`, {
+      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/documents/download/${documentId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 

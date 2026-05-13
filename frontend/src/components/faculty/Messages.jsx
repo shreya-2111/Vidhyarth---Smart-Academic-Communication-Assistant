@@ -90,7 +90,7 @@ function Messages({ user }) {
       const endpoint = activeTab === 'inbox' ? 'inbox' : 'sent';
       
       const response = await fetch(
-        `https://backend-beryl-pi.vercel.app/api/messages/${endpoint}/${user.id}/faculty`,
+        `https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/${endpoint}/${user.id}/faculty`,
         {
           headers: { 'Authorization': `Bearer ${token}` }
         }
@@ -113,7 +113,7 @@ function Messages({ user }) {
     try {
       // MSCIT only - fetch all students directly via messages API
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/messages/students', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/students', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -128,7 +128,7 @@ function Messages({ user }) {
   const fetchFacultyList = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/messages/faculty', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/faculty', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -146,7 +146,7 @@ function Messages({ user }) {
     try {
       const token = localStorage.getItem('authToken');
       const response = await fetch(
-        `https://backend-beryl-pi.vercel.app/api/messages/unread/${user.id}/faculty`,
+        `https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/unread/${user.id}/faculty`,
         {
           headers: { 'Authorization': `Bearer ${token}` }
         }
@@ -165,7 +165,7 @@ function Messages({ user }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/messages/send', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -196,7 +196,7 @@ function Messages({ user }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/messages/send', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -227,7 +227,7 @@ function Messages({ user }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/messages/announcement', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/announcement', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -253,7 +253,7 @@ function Messages({ user }) {
   const markAsRead = async (messageId) => {
     try {
       const token = localStorage.getItem('authToken');
-      await fetch(`https://backend-beryl-pi.vercel.app/api/messages/read/${messageId}`, {
+      await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/read/${messageId}`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });

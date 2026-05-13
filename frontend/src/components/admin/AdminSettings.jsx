@@ -37,7 +37,7 @@ function AdminSettings() {
   const fetchSettings = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/admin/settings', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/settings', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -53,7 +53,7 @@ function AdminSettings() {
   const fetchSystemStats = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/admin/system-stats', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/system-stats', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -74,7 +74,7 @@ function AdminSettings() {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/admin/settings', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/settings', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ function AdminSettings() {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/admin/change-password', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/change-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ function AdminSettings() {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/admin/backup', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/backup', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -172,7 +172,7 @@ function AdminSettings() {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/admin/clear-cache', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/clear-cache', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });

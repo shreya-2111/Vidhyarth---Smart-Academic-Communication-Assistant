@@ -97,37 +97,37 @@ function FacultyDashboard({ user, onLogout, activeMenu, setActiveMenu }) {
       const token = localStorage.getItem('authToken');
       
       // Fetch assignments stats
-      const assignmentsResponse = await fetch(`https://backend-beryl-pi.vercel.app/api/assignments/stats/${user.id}`, {
+      const assignmentsResponse = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/assignments/stats/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
       // Fetch recent assignments
-      const recentAssignmentsResponse = await fetch(`https://backend-beryl-pi.vercel.app/api/assignments/faculty/${user.id}`, {
+      const recentAssignmentsResponse = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/assignments/faculty/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
       // Fetch attendance stats for today
-      const attendanceResponse = await fetch(`https://backend-beryl-pi.vercel.app/api/attendance/stats/today/all`, {
+      const attendanceResponse = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/attendance/stats/today/all`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
       // Fetch total students count
-      const studentsResponse = await fetch(`https://backend-beryl-pi.vercel.app/api/messages/students`, {
+      const studentsResponse = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/students`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
       // Fetch recent messages (student queries)
-      const messagesResponse = await fetch(`https://backend-beryl-pi.vercel.app/api/messages/inbox/${user.id}/faculty`, {
+      const messagesResponse = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/inbox/${user.id}/faculty`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
       // Fetch announcements
-      const announcementsResponse = await fetch(`https://backend-beryl-pi.vercel.app/api/messages/announcements/${user.id}`, {
+      const announcementsResponse = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/announcements/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
       // Fetch today's timetable count directly (avoids stale state)
-      const timetableResponse = await fetch(`https://backend-beryl-pi.vercel.app/api/timetable/today/${user.id}`, {
+      const timetableResponse = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/timetable/today/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -783,7 +783,7 @@ function StudentDashboard({ user, onLogout }) {
       const token = localStorage.getItem('authToken');
       
       // Fetch student dashboard stats
-      const statsResponse = await fetch(`https://backend-beryl-pi.vercel.app/api/student/dashboard/${user.id}`, {
+      const statsResponse = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/dashboard/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -794,7 +794,7 @@ function StudentDashboard({ user, onLogout }) {
       }
 
       // Fetch recent announcements
-      const announcementsResponse = await fetch(`https://backend-beryl-pi.vercel.app/api/student/announcements/${user.id}`, {
+      const announcementsResponse = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/announcements/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -804,7 +804,7 @@ function StudentDashboard({ user, onLogout }) {
       }
 
       // Fetch performance summary
-      const performanceResponse = await fetch(`https://backend-beryl-pi.vercel.app/api/student/performance/${user.id}`, {
+      const performanceResponse = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/performance/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -812,7 +812,7 @@ function StudentDashboard({ user, onLogout }) {
         const performance = await performanceResponse.json();
         
         // Calculate assignment completion percentage
-        const assignmentsResponse = await fetch(`https://backend-beryl-pi.vercel.app/api/student/assignments/${user.id}`, {
+        const assignmentsResponse = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/assignments/${user.id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         
@@ -839,7 +839,7 @@ function StudentDashboard({ user, onLogout }) {
     const loadStudentTimetable = async () => {
       try {
         const token = localStorage.getItem('authToken');
-        const response = await fetch(`https://backend-beryl-pi.vercel.app/api/student/timetable/${user.id}`, {
+        const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/timetable/${user.id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         

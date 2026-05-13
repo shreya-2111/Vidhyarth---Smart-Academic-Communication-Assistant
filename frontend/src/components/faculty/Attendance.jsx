@@ -74,7 +74,7 @@ function Attendance({ user }) {
       setLoadingAssignments(true);
       console.log('Loading faculty assignments for user:', user.id);
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/faculty-subject-assignment/faculty/${user.id}/assignments`, {
+      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty-subject-assignment/faculty/${user.id}/assignments`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -294,7 +294,7 @@ function Attendance({ user }) {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/qr-attendance/mark-absent', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/qr-attendance/mark-absent', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -405,7 +405,7 @@ function Attendance({ user }) {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/qr-attendance/create-session', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/qr-attendance/create-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -447,7 +447,7 @@ function Attendance({ user }) {
     if (qrSessionId) {
       try {
         const token = localStorage.getItem('authToken');
-        await fetch(`https://backend-beryl-pi.vercel.app/api/qr-attendance/end-session/${qrSessionId}`, {
+        await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/qr-attendance/end-session/${qrSessionId}`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`

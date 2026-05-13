@@ -101,7 +101,7 @@ function Reports({ user }) {
   const fetchDashboardData = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/reports/dashboard/${user.id}`, {
+      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/reports/dashboard/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -119,7 +119,7 @@ function Reports({ user }) {
       const token = localStorage.getItem('authToken');
       const params = new URLSearchParams(selectedFilters);
       const response = await fetch(
-        `https://backend-beryl-pi.vercel.app/api/reports/student-performance/${user.id}?${params}`,
+        `https://backend-git-main-shreya-2111s-projects.vercel.app/api/reports/student-performance/${user.id}?${params}`,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
       if (response.ok) {
@@ -137,7 +137,7 @@ function Reports({ user }) {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/reports/charts/${user.id}`, {
+      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/reports/charts/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -155,7 +155,7 @@ function Reports({ user }) {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/reports/weak-students/${user.id}`, {
+      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/reports/weak-students/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -203,7 +203,7 @@ function Reports({ user }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/reports/add-grade', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/reports/add-grade', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

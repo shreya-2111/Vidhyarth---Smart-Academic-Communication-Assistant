@@ -34,7 +34,7 @@ function ExcelImport() {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/excel/import', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/excel/import', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData

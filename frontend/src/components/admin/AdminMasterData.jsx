@@ -35,7 +35,7 @@ function AdminMasterData() {
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
-    fetch('https://backend-beryl-pi.vercel.app/api/master/classes', {
+    fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/master/classes', {
       headers: { 'Authorization': `Bearer ${token}` }
     }).then(r => r.json()).then(d => setClassesList(Array.isArray(d) ? d : [])).catch(() => {});
   }, []);
@@ -44,7 +44,7 @@ function AdminMasterData() {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/admin/master/${activeTable}`, {
+      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/master/${activeTable}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -78,7 +78,7 @@ function AdminMasterData() {
 
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/admin/master/${activeTable}/${id}`, {
+      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/master/${activeTable}/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -102,8 +102,8 @@ function AdminMasterData() {
     try {
       const token = localStorage.getItem('authToken');
       const url = editMode
-        ? `https://backend-beryl-pi.vercel.app/api/admin/master/${activeTable}/${getPrimaryKey()}`
-        : `https://backend-beryl-pi.vercel.app/api/admin/master/${activeTable}`;
+        ? `https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/master/${activeTable}/${getPrimaryKey()}`
+        : `https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/master/${activeTable}`;
 
       // Prepare data - remove empty password in edit mode
       const dataToSend = { ...formData };

@@ -31,7 +31,7 @@ function AdminProfile({ user, onClose }) {
   const fetchSystemStats = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-beryl-pi.vercel.app/api/admin/stats', {
+      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/stats', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
