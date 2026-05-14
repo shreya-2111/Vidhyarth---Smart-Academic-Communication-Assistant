@@ -2,8 +2,6 @@ const mysql = require('mysql2');
 require('dotenv').config();
 
 const pool = mysql.createPool({
-  // CleverCloud injects MYSQL_ADDON_* variables when addon is linked
-  // Fallback to DB_* for local development
   host:     process.env.MYSQL_ADDON_HOST     || process.env.DB_HOST,
   user:     process.env.MYSQL_ADDON_USER     || process.env.DB_USER,
   password: process.env.MYSQL_ADDON_PASSWORD || process.env.DB_PASSWORD,
