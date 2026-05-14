@@ -23,7 +23,7 @@ const excelImportRoutes = require('./routes/excelImport');
 const qrAttendanceRoutes = require('./routes/qr-attendance');
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 8080;
 
 // Middleware
 // CORS configuration - allow all origins for mobile app access
