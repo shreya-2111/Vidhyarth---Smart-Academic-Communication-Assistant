@@ -1,0 +1,13 @@
+{
+  "name": "vidhyarth-backend",
+  "version": "1.0.0",
+  "description": "Vidhyarth Backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "postinstall": "cd backend && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
