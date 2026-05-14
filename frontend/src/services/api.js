@@ -1,4 +1,4 @@
-export const API_URL = (process.env.REACT_APP_API_URL || 'https://vidhyarth-smart-academic-communication.onrender.com') + '/api';
+export const API_URL = 'https://backend-beryl-pi.vercel.app/api';
 
 // Get auth token from localStorage
 const getAuthToken = () => {
