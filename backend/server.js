@@ -28,7 +28,9 @@ const PORT = process.env.PORT || 8080;
 // Middleware
 // CORS configuration - allow all origins for mobile app access
 const corsOptions = {
-  origin: '*',
+  origin: function (origin, callback) {
+    callback(null, true);
+  },
   credentials: true,
   optionsSuccessStatus: 200
 };
