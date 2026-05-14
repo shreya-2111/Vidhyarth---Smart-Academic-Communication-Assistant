@@ -1,4 +1,4 @@
-export const API_URL = (process.env.REACT_APP_API_URL || 'https://app-3f5299d5-a544-4777-861f-618085d5a8d5.cleverapps.io') + '/api';
+export const API_URL = (process.env.REACT_APP_API_URL || 'https://vidhyarth-smart-academic-communication.onrender.com') + '/api';
 
 // Get auth token from localStorage
 const getAuthToken = () => {
