@@ -46,7 +46,7 @@ function StudentProfile({ user, onClose }) {
   const fetchStudentStats = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/profile-stats', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/student/profile-stats', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -61,7 +61,7 @@ function StudentProfile({ user, onClose }) {
   const fetchAnnouncements = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/announcements?limit=5', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/student/announcements?limit=5', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -76,7 +76,7 @@ function StudentProfile({ user, onClose }) {
   const fetchSubjectProgress = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/subject-progress', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/student/subject-progress', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -101,7 +101,7 @@ function StudentProfile({ user, onClose }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/update-profile', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/student/update-profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(editData)
@@ -126,7 +126,7 @@ function StudentProfile({ user, onClose }) {
     }
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/change-password', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/student/change-password', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ currentPassword: passwordData.currentPassword, newPassword: passwordData.newPassword })

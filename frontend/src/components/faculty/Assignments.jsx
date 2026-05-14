@@ -120,7 +120,7 @@ function Assignments({ user }) {
       
       console.log('Fetching assignments for user:', user.id);
       
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/assignments/faculty/${user.id}`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/assignments/faculty/${user.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -223,7 +223,7 @@ function Assignments({ user }) {
       formDataUpload.append('file', file);
 
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/assignments/upload', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/assignments/upload', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -261,8 +261,8 @@ function Assignments({ user }) {
     try {
       const token = localStorage.getItem('authToken');
       const url = selectedAssignment 
-        ? `https://backend-git-main-shreya-2111s-projects.vercel.app/api/assignments/${selectedAssignment.assignment_id}`
-        : 'https://backend-git-main-shreya-2111s-projects.vercel.app/api/assignments';
+        ? `https://backend-beryl-pi.vercel.app/api/assignments/${selectedAssignment.assignment_id}`
+        : 'https://backend-beryl-pi.vercel.app/api/assignments';
       
       const method = selectedAssignment ? 'PUT' : 'POST';
 
@@ -307,7 +307,7 @@ function Assignments({ user }) {
     if (window.confirm('Are you sure you want to delete this assignment?')) {
       try {
         const token = localStorage.getItem('authToken');
-        const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/assignments/${id}`, {
+        const response = await fetch(`https://backend-beryl-pi.vercel.app/api/assignments/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -466,7 +466,7 @@ function Assignments({ user }) {
                   {assignment.file_url && (
                     <div className="card-file">
                       <a 
-                        href={`https://backend-git-main-shreya-2111s-projects.vercel.app${assignment.file_url}`} 
+                        href={`https://backend-beryl-pi.vercel.app${assignment.file_url}`} 
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="file-link"

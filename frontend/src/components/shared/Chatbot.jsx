@@ -51,7 +51,7 @@ function Chatbot({ user }) {
 
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/chatbot', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/chatbot', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ function Chatbot({ user }) {
   const clearChat = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/chatbot/history', {
+      await fetch('https://backend-beryl-pi.vercel.app/api/chatbot/history', {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

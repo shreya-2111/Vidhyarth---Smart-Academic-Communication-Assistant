@@ -24,7 +24,7 @@ function AdminUsers() {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/users/${activeTab}`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/admin/users/${activeTab}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -54,7 +54,7 @@ function AdminUsers() {
       const token = localStorage.getItem('authToken');
       
       // Add faculty/student
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/users/${activeTab}`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/admin/users/${activeTab}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ function AdminUsers() {
       try {
         const token = localStorage.getItem('authToken');
         const idField = activeTab === 'faculty' ? 'faculty_id' : 'student_id';
-        const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/users/${activeTab}/${id}`, {
+        const response = await fetch(`https://backend-beryl-pi.vercel.app/api/admin/users/${activeTab}/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`

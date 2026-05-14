@@ -42,7 +42,7 @@ function AssignSubjectsToFaculty() {
     try {
       setLoadingFaculty(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty-subject-assignment/faculty', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/faculty-subject-assignment/faculty', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -61,7 +61,7 @@ function AssignSubjectsToFaculty() {
     try {
       setLoadingClasses(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty-subject-assignment/classes', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/faculty-subject-assignment/classes', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -80,7 +80,7 @@ function AssignSubjectsToFaculty() {
     try {
       setLoadingSubjects(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty-subject-assignment/subjects/${classId}`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/faculty-subject-assignment/subjects/${classId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -114,7 +114,7 @@ function AssignSubjectsToFaculty() {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty-subject-assignment/assign', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/faculty-subject-assignment/assign', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ function AssignSubjectsToFaculty() {
 
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty-subject-assignment/classes', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/faculty-subject-assignment/classes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -190,7 +190,7 @@ function AssignSubjectsToFaculty() {
 
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty-subject-assignment/subjects', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/faculty-subject-assignment/subjects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

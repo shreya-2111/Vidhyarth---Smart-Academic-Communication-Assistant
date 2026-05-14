@@ -85,7 +85,7 @@ function Notifications({ user }) {
       }
       // For all tab, get all notifications (no filter)
 
-      const url = `https://backend-git-main-shreya-2111s-projects.vercel.app/api/notifications/${user.id}/${user.userType}?${params}`;
+      const url = `https://backend-beryl-pi.vercel.app/api/notifications/${user.id}/${user.userType}?${params}`;
       console.log('=== FETCHING FACULTY NOTIFICATIONS ===');
       console.log('URL:', url);
       console.log('Active Tab:', activeTab);
@@ -120,7 +120,7 @@ function Notifications({ user }) {
       setLoading(true);
       const token = localStorage.getItem('authToken');
       const response = await fetch(
-        `https://backend-git-main-shreya-2111s-projects.vercel.app/api/messages/announcements/${user.id}`,
+        `https://backend-beryl-pi.vercel.app/api/messages/announcements/${user.id}`,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
 
@@ -139,7 +139,7 @@ function Notifications({ user }) {
     try {
       const token = localStorage.getItem('authToken');
       const response = await fetch(
-        `https://backend-git-main-shreya-2111s-projects.vercel.app/api/notifications/count/${user.id}/${user.userType}`,
+        `https://backend-beryl-pi.vercel.app/api/notifications/count/${user.id}/${user.userType}`,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
       if (response.ok) {
@@ -155,7 +155,7 @@ function Notifications({ user }) {
     try {
       const token = localStorage.getItem('authToken');
       const response = await fetch(
-        `https://backend-git-main-shreya-2111s-projects.vercel.app/api/notifications/stats/${user.id}/${user.userType}`,
+        `https://backend-beryl-pi.vercel.app/api/notifications/stats/${user.id}/${user.userType}`,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
       if (response.ok) {
@@ -170,7 +170,7 @@ function Notifications({ user }) {
   const markAsRead = async (notificationId) => {
     try {
       const token = localStorage.getItem('authToken');
-      await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/notifications/read/${notificationId}`, {
+      await fetch(`https://backend-beryl-pi.vercel.app/api/notifications/read/${notificationId}`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -184,7 +184,7 @@ function Notifications({ user }) {
   const markAllAsRead = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/notifications/read-all/${user.id}/${user.userType}`, {
+      await fetch(`https://backend-beryl-pi.vercel.app/api/notifications/read-all/${user.id}/${user.userType}`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -204,7 +204,7 @@ function Notifications({ user }) {
 
     try {
       const token = localStorage.getItem('authToken');
-      await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/notifications/${notificationId}`, {
+      await fetch(`https://backend-beryl-pi.vercel.app/api/notifications/${notificationId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

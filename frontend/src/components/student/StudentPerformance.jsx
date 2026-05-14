@@ -57,7 +57,7 @@ function StudentPerformance({ user }) {
       setLoading(true);
       const token = localStorage.getItem('authToken');
       const response = await fetch(
-        `https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/performance/${user.id}`,
+        `https://backend-beryl-pi.vercel.app/api/student/performance/${user.id}`,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
 

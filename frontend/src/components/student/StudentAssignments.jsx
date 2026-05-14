@@ -61,7 +61,7 @@ function StudentAssignments({ user }) {
       console.log('Active tab:', activeTab);
       
       const response = await fetch(
-        `https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/assignments/${user.id}?status=${activeTab}`,
+        `https://backend-beryl-pi.vercel.app/api/student/assignments/${user.id}?status=${activeTab}`,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
 
@@ -124,7 +124,7 @@ function StudentAssignments({ user }) {
         formData.append('submissionFile', submissionFile);
       }
 
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/submit-assignment', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/student/submit-assignment', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -269,7 +269,7 @@ function StudentAssignments({ user }) {
                   <div className="assignment-actions">
                     {assignment.file_url && (
                       <a 
-                        href={`https://backend-git-main-shreya-2111s-projects.vercel.app${assignment.file_url}`}
+                        href={`https://backend-beryl-pi.vercel.app${assignment.file_url}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn-download"
@@ -289,7 +289,7 @@ function StudentAssignments({ user }) {
                     
                     {assignment.status === 'submitted' && assignment.submission_url && (
                       <a 
-                        href={`https://backend-git-main-shreya-2111s-projects.vercel.app${assignment.submission_url}`}
+                        href={`https://backend-beryl-pi.vercel.app${assignment.submission_url}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn-view-submission"

@@ -58,7 +58,7 @@ function StudentResources({ user }) {
       const token = localStorage.getItem('authToken');
       console.log('Fetching documents for student...');
       
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/documents/all', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/documents/all', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -127,7 +127,7 @@ function StudentResources({ user }) {
   const handleDownload = async (documentId, fileName) => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/documents/download/${documentId}`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/documents/download/${documentId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -154,7 +154,7 @@ function StudentResources({ user }) {
   const handleView = async (documentId, fileName) => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/documents/download/${documentId}`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/documents/download/${documentId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 

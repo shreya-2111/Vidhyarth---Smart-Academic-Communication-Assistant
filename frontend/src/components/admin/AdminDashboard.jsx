@@ -78,7 +78,7 @@ function AdminDashboard({ user, onLogout }) {
   const fetchStats = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/stats', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/admin/stats', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -96,7 +96,7 @@ function AdminDashboard({ user, onLogout }) {
   const fetchSystemStatus = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/system-status', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/admin/system-status', {
         headers: {
           'Authorization': `Bearer ${token}`
         }

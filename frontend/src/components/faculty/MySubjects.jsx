@@ -14,7 +14,7 @@ function MySubjects({ user }) {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty-subject-assignment/faculty/${user.id}/assignments`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/faculty-subject-assignment/faculty/${user.id}/assignments`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       

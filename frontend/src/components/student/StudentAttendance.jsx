@@ -60,7 +60,7 @@ function StudentAttendance({ user }) {
       
       // Fetch attendance records
       const response = await fetch(
-        `https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/attendance/${user.id}?month=${selectedMonth}`,
+        `https://backend-beryl-pi.vercel.app/api/student/attendance/${user.id}?month=${selectedMonth}`,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
 

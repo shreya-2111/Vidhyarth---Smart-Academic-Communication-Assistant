@@ -48,7 +48,7 @@ function FacultyProfile({ user, onClose }) {
   const fetchFacultyStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty/profile-stats', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/faculty/profile-stats', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -78,7 +78,7 @@ function FacultyProfile({ user, onClose }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty/update-profile', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/faculty/update-profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ function FacultyProfile({ user, onClose }) {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty/change-password', {
+      const response = await fetch('https://backend-beryl-pi.vercel.app/api/faculty/change-password', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ function FacultyProfile({ user, onClose }) {
   const handleNotificationUpdate = async () => {
     try {
       const token = localStorage.getItem('token');
-      await fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/faculty/notification-settings', {
+      await fetch('https://backend-beryl-pi.vercel.app/api/faculty/notification-settings', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -38,25 +38,25 @@ function AdminAnalytics() {
         activityRes,
         performanceRes
       ] = await Promise.all([
-        fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/analytics/user-growth?range=${timeRange}`, {
+        fetch(`https://backend-beryl-pi.vercel.app/api/admin/analytics/user-growth?range=${timeRange}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/analytics/assignments', {
+        fetch('https://backend-beryl-pi.vercel.app/api/admin/analytics/assignments', {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/analytics/attendance', {
+        fetch('https://backend-beryl-pi.vercel.app/api/admin/analytics/attendance', {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/analytics/active-users', {
+        fetch('https://backend-beryl-pi.vercel.app/api/admin/analytics/active-users', {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/analytics/departments', {
+        fetch('https://backend-beryl-pi.vercel.app/api/admin/analytics/departments', {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/analytics/recent-activity', {
+        fetch('https://backend-beryl-pi.vercel.app/api/admin/analytics/recent-activity', {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('https://backend-git-main-shreya-2111s-projects.vercel.app/api/admin/analytics/performance', {
+        fetch('https://backend-beryl-pi.vercel.app/api/admin/analytics/performance', {
           headers: { 'Authorization': `Bearer ${token}` }
         })
       ]);

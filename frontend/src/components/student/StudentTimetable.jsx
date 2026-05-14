@@ -54,7 +54,7 @@ function StudentTimetable({ user }) {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/timetable/${user.id}`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/student/timetable/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 

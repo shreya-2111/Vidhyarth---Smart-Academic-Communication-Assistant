@@ -57,7 +57,7 @@ function StudentNotifications({ user }) {
       const token = localStorage.getItem('authToken');
       
       // Fetch notifications for student
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/notifications/${user.id}/student`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/notifications/${user.id}/student`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -76,7 +76,7 @@ function StudentNotifications({ user }) {
     try {
       setLoading(true);
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/student/announcements/${user.id}`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/student/announcements/${user.id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -97,7 +97,7 @@ function StudentNotifications({ user }) {
     
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/notifications/mark-read/${notificationId}`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/notifications/mark-read/${notificationId}`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -121,7 +121,7 @@ function StudentNotifications({ user }) {
     
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/notifications/mark-unread/${notificationId}`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/notifications/mark-unread/${notificationId}`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -141,7 +141,7 @@ function StudentNotifications({ user }) {
   const markAllAsRead = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`https://backend-git-main-shreya-2111s-projects.vercel.app/api/notifications/mark-all-read/${user.id}`, {
+      const response = await fetch(`https://backend-beryl-pi.vercel.app/api/notifications/mark-all-read/${user.id}`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
